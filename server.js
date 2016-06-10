@@ -3,12 +3,13 @@ const app = express();
 const jwt = require('express-jwt');
 const cors = require('cors');
 
+require('dotenv').config();
 app.use(cors());
 
 // authentication middleware provided by express-jwt
 const authCheck = jwt({
-  secret: new Buffer('YOUR_AUTH0_SECRET', 'base64'),
-  audience: 'YOUR_AUTH0_CLIENT_ID'
+  secret: new Buffer(process.env.AUTH0_SECRET, 'base64'),
+  audience: process.env.AUTH0_CLIENT_ID
 });
 
 var contacts = [
